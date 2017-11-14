@@ -6,7 +6,7 @@
         content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="">
+
 
   <title>Starter Template for Bootstrap</title>
 
@@ -19,7 +19,7 @@
   <!-- Custom styles for this template -->
   <style type="text/css">
     body {
-      padding-top: 5rem;
+      padding-top: 2rem;
     }
   </style>
 </head>
@@ -37,7 +37,7 @@
     <h1>{{item.title}}</h1>
     {% for article in item.articles -%}
         <p><a
-          href="articles/{{article.source|replace('.md', '.html')|replace('amp; ', '%20')|replace(' ', '%20')}}">{{article.title}}</a></p>
+          href="articles/{{article.source|replace('.md', '.md.html')|replace('amp; ', '%20')|replace(' ', '%20')}}">{{article.title}}</a></p>
     {% endfor -%}
     {% endfor -%}
   </div>

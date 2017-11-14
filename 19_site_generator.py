@@ -2,12 +2,19 @@ import json
 import os
 
 import jinja2
+import markdown
 
 
 def load_data(filepath):
     with open(filepath, "r", encoding='utf-8') as input_file:
         raw_json_data = json.load(input_file)
     return raw_json_data
+
+
+def get_sub_menu_items(json_data, main_menu_item):
+    sub_menu_items = \
+        [x for x in json_data['articles'] if x['topic'] == main_menu_item]
+    return sub_menu_items
 
 
 def get_menu_structure(json_data):
@@ -20,10 +27,15 @@ def get_menu_structure(json_data):
     return right_menu_structure
 
 
-def get_sub_menu_items(json_data, main_menu_item):
-    sub_menu_items = \
-        [x for x in json_data['articles'] if x['topic'] == main_menu_item]
-    return sub_menu_items
+def render_articles_pages_to_file(json_data):
+    for article in json_data['articles']:
+        with open('articles/' + article['source'], "r",
+                  encoding='utf-8') as input_article:
+            md_text = input_article.read()
+            html = markdown.markdown(md_text)
+            with open('articles/' + article['source'] + '.html', 'w',
+                      encoding='utf-8') as f:
+                f.write(html)
 
 
 def render_index_page_to_file(tpl_path, json_data):
@@ -42,3 +54,4 @@ def render_index_page_to_file(tpl_path, json_data):
 if __name__ == '__main__':
     json_data = load_data('config.json')
     render_index_page_to_file('templates/index.html', json_data)
+    render_articles_pages_to_file(json_data)
