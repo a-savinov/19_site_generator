@@ -2,9 +2,9 @@
 
 {% block content %}
     {% for item in main_menu -%}
-    <h1>{{item.title}}</h1>
-    {% for article in item.articles -%}
-        <p><a href="articles/{{article.source|replace('.md', '.md.html')|replace('amp; ', '%20')|replace(' ', '%20')}}">{{article.title}}</a></p>
-    {% endfor -%}
+        <h1>{{item.title}}</h1>
+            {% for article in item.articles -%}
+                <p><a href="articles/{{article.source|replace('.md', '.md.html')|replace('amp; ', '%20')|replace(' ', '%20')}}">{{article.title}}</a></p>
+            {% endfor -%}
     {% endfor -%}
 {% endblock %}
