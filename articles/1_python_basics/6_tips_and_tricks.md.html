@@ -1,106 +1,141 @@
-<p>Тут – разные мелочи, на которых обычно спотыкаются новички в Питоне. Шагай свободно.</p>
-<h3>Итерируй сразу по коллекции, а не по индексам</h3>
-<p>Раньше в C++ итерация по коллекции проходила так:</p>
-<pre><code>:::cpp
-for(int i = 0; i &lt; books_amount; i++) {
-    cout &lt;&lt; books[i];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <title>Starter Template for Bootstrap</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <style type="text/css">
+    body {
+      padding-top: 5rem;
+    }
+  </style>
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/">Main page</a>
+</nav>
+
+<div class="container">
+  <div class="starter-template">
+        &lt;p&gt;Тут – разные мелочи, на которых обычно спотыкаются новички в Питоне. Шагай свободно.&lt;/p&gt;
+&lt;h3&gt;Итерируй сразу по коллекции, а не по индексам&lt;/h3&gt;
+&lt;p&gt;Раньше в C++ итерация по коллекции проходила так:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::cpp
+for(int i = 0; i &amp;lt; books_amount; i++) {
+    cout &amp;lt;&amp;lt; books[i];
 }
-</code></pre>
-<p>Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 for i in len(books):
     print(books[i])
-</code></pre>
-<p>Это неудобная дичь, древность и вообще. Вот как надо:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Это неудобная дичь, древность и вообще. Вот как надо:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 for book in books:
     print(book)
-</code></pre>
-<p>Часто вместе с элементом нужен его номер. Памятуя, что можно итерировать по коллекции, хочется сделать как-то так:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Часто вместе с элементом нужен его номер. Памятуя, что можно итерировать по коллекции, хочется сделать как-то так:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 i = 0 
 for book in books:
     print(i, book)
     i += 1
-</code></pre>
-<p>Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция <code>enumerate</code>:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция &lt;code&gt;enumerate&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 for book_number, book in enumerate(books):
     print(book_number, book)
-</code></pre>
-<p>Делай правильно и не делай неправильно.</p>
-<h3>Используй None</h3>
-<p>Часто нужно предусмотреть какой-нибудь хреновый случай – нет файла с данными, не работает интернет,
-не хватает места на диске, пользователь ввёл неверные данные. </p>
-<p>В этом случае переменную с данными нужно чем-то заполнить, но со смыслом, типа, "тут ничего нет".</p>
-<p>Для "ничего" в Питоне есть <code>None</code>. Не пустая строка и не -1, а именно <code>None</code>:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Делай правильно и не делай неправильно.&lt;/p&gt;
+&lt;h3&gt;Используй None&lt;/h3&gt;
+&lt;p&gt;Часто нужно предусмотреть какой-нибудь хреновый случай – нет файла с данными, не работает интернет,
+не хватает места на диске, пользователь ввёл неверные данные. &lt;/p&gt;
+&lt;p&gt;В этом случае переменную с данными нужно чем-то заполнить, но со смыслом, типа, &#34;тут ничего нет&#34;.&lt;/p&gt;
+&lt;p&gt;Для &#34;ничего&#34; в Питоне есть &lt;code&gt;None&lt;/code&gt;. Не пустая строка и не -1, а именно &lt;code&gt;None&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 try:
-    latitude = float(input('Введите широту: '))
+    latitude = float(input(&#39;Введите широту: &#39;))
 except ValueError:
     latitude = None
 
 if latitude is None:
-    print('wtf, dude?')
-</code></pre>
-<p>Обрати внимание на то, как проверяется, находится ли в переменной <code>None</code>: <code>if latitude is None</code>.
-Не <code>if latitude == None</code> и не <code>if latitude</code>. Это важно.</p>
-<h3>Меньше вложенности</h3>
-<p>Загрузим json из файла:</p>
-<pre><code>:::python
+    print(&#39;wtf, dude?&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Обрати внимание на то, как проверяется, находится ли в переменной &lt;code&gt;None&lt;/code&gt;: &lt;code&gt;if latitude is None&lt;/code&gt;.
+Не &lt;code&gt;if latitude == None&lt;/code&gt; и не &lt;code&gt;if latitude&lt;/code&gt;. Это важно.&lt;/p&gt;
+&lt;h3&gt;Меньше вложенности&lt;/h3&gt;
+&lt;p&gt;Загрузим json из файла:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 def load_json_data(filepath):
-    with open(filepath, 'r') as file_handler:
+    with open(filepath, &#39;r&#39;) as file_handler:
         return json.load(file_handler)
-</code></pre>
-<p>Всё сломается, если передать путь до несуществующего файла. Исправим:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Всё сломается, если передать путь до несуществующего файла. Исправим:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 def load_json_data(filepath):
     if os.path.exists(filepath):
-        with open(filepath, 'r') as file_handler:
+        with open(filepath, &#39;r&#39;) as file_handler:
             return json.load(file_handler)
     else:
         return None
-</code></pre>
-<p>Первый секрет: если функция ничего не возвращает, то она возвращает <code>None</code>. Поэтому писать <code>return None</code> в конце
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Первый секрет: если функция ничего не возвращает, то она возвращает &lt;code&gt;None&lt;/code&gt;. Поэтому писать &lt;code&gt;return None&lt;/code&gt; в конце
  функции смысла нет.
-Избавляемся от <code>else</code>:</p>
-<pre><code>:::python
+Избавляемся от &lt;code&gt;else&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 def load_json_data(filepath):
     if os.path.exists(filepath):
-        with open(filepath, 'r') as file_handler:
+        with open(filepath, &#39;r&#39;) as file_handler:
             return json.load(file_handler)
-</code></pre>
-<p>Теперь всё лаконично, но очень связанно, как предложение, в котором, помимо деепричастных оборотов, есть ещё
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Теперь всё лаконично, но очень связанно, как предложение, в котором, помимо деепричастных оборотов, есть ещё
 несколько уровней подчинений, сложным образом связанных друг с другом и заставляющие держать их все в
-памяти, чтобы понять смысл, пусть и простой.</p>
-<p>Упростить можно так:</p>
-<pre><code>:::python
+памяти, чтобы понять смысл, пусть и простой.&lt;/p&gt;
+&lt;p&gt;Упростить можно так:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 def load_json_data(filepath):
     if not os.path.exists(filepath):
         return None
-    with open(filepath, 'r') as file_handler:
+    with open(filepath, &#39;r&#39;) as file_handler:
         return json.load(file_handler)
-</code></pre>
-<p>Теперь стало проще: меньше вложенности, просто читать. Меньше багов.</p>
-<h3>Используй превращение типов в bool</h3>
-<p>Часто в коде приходится проверять переменные на нулевые значения.
-Например, пустой список:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Теперь стало проще: меньше вложенности, просто читать. Меньше багов.&lt;/p&gt;
+&lt;h3&gt;Используй превращение типов в bool&lt;/h3&gt;
+&lt;p&gt;Часто в коде приходится проверять переменные на нулевые значения.
+Например, пустой список:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 if len(users) == 0:
     pass
-</code></pre>
-<p>Или пустая строка:</p>
-<pre><code>:::python
-if user.email == '':
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Или пустая строка:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+if user.email == &#39;&#39;:
     pass
-</code></pre>
-<p>Или ноль:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Или ноль:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 if user.level == 0:
     pass
-</code></pre>
-<p>Все три примера выше – неверные. Вот их верные аналоги:</p>
-<pre><code>:::python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Все три примера выше – неверные. Вот их верные аналоги:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
 if not users:
     pass
 
@@ -109,73 +144,113 @@ if not user.email:
 
 if not user.level:
     pass
-</code></pre>
-<p>Дело в том, что любое условное выражение неявно конвертируется в boolean. Для каждого типа правила конвертации свои.
-Например, любая строка превратится в <code>True</code>, кроме пустой. Любое число – тоже <code>True</code>, кроме нуля.
-Подробнее в <a href="https://docs.python.org/3.5/library/stdtypes.html#truth">документации</a>.</p>
-<p>Это облегчает код и не вредит читаемости.</p>
-<h3>Знай стандартную библиотеку</h3>
-<p>Стандартная библиотека Питона огромная, в ней куча всего полезного.
-Стоит глянуть <a href="https://docs.python.org/3/library/">на содержание</a>, чтобы оценить масштаб.</p>
-<p>Особое внимание советую уделить модулям <a href="https://docs.python.org/3/library/os.html">os</a>,
-<a href="https://docs.python.org/3/library/collections.html">collections</a>,
-<a href="https://docs.python.org/3/library/itertools.html">itertools</a>
-и <a href="https://docs.python.org/3/library/functools.html">functools</a>.
-Они позволяют сделать код ещё короче и более читаемым, а тебя – профессиональнее.</p>
-<p>Другие модули тоже важны: стоит несколько раз прочитать про все, чтобы иметь представление о функциях
-и знать, где смотреть, если они понадобятся.</p>
-<h3>Понятные названия у всего</h3>
-<p>Названия должны однозначно говорить о том, зачем нужна сущность: переменная, функция или что-то ещё.</p>
-<p>Переменные – это сущности, а их названия – это существительные (<code>user.level</code>) или их свойства (<code>user.is_admin</code>).</p>
-<p>Функции что-то делают с переменными, значит их названия – глаголы (<code>download_report</code>, <code>levelup_user</code>).</p>
-<p>Названия должны быть:</p>
-<ul>
-<li><strong>понятными</strong>: понятно говорить о смысле. Не <code>result</code>, а <code>users_online</code> или <code>json_content</code>.</li>
-<li><strong>полными</strong>: никаких <code>r</code> для радиуса Земли или <code>i</code> для элемента списка. В первом случае подойдёт <code>earth_radius</code>,
-а во втором какой-нибудь <code>user</code> или <code>book</code>, в зависимости от того, что в списке. Длинные названия – не проблема,
-у всех давно есть автокомплит.</li>
-<li><strong>на английском</strong>: никаких <code>kniga</code> или <code>polsovatel</code>. Брр.</li>
-<li><strong>грамотными</strong>: не поленись открыть переводчик и гугл, чтобы подобрать правильный перевод. Неправильный перевод
-создаёт ощущение неряшливости, а может и смыслу навредить – тогда о читаемости не может быть и речи.</li>
-<li><strong>уникальными</strong>: в Питоне есть <a href="https://docs.python.org/3.5/library/functions.html">встроенные функции</a>,
-называть переменные их именами нельзя: тогда функция станет недоступна. Среди них есть file, dict, all, str.</li>
-</ul>
-<h3>Больше функций</h3>
-<p>Функции нужны, чтобы сделать код понятным и реиспользуемым.</p>
-<p>Понятным – это когда с первого взгляда понятно, что он делает:</p>
-<pre><code>:::python
-credentials = load_oauth_credentials_from_file('fb_creds.json')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Дело в том, что любое условное выражение неявно конвертируется в boolean. Для каждого типа правила конвертации свои.
+Например, любая строка превратится в &lt;code&gt;True&lt;/code&gt;, кроме пустой. Любое число – тоже &lt;code&gt;True&lt;/code&gt;, кроме нуля.
+Подробнее в &lt;a href=&#34;https://docs.python.org/3.5/library/stdtypes.html#truth&#34;&gt;документации&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Это облегчает код и не вредит читаемости.&lt;/p&gt;
+&lt;h3&gt;Знай стандартную библиотеку&lt;/h3&gt;
+&lt;p&gt;Стандартная библиотека Питона огромная, в ней куча всего полезного.
+Стоит глянуть &lt;a href=&#34;https://docs.python.org/3/library/&#34;&gt;на содержание&lt;/a&gt;, чтобы оценить масштаб.&lt;/p&gt;
+&lt;p&gt;Особое внимание советую уделить модулям &lt;a href=&#34;https://docs.python.org/3/library/os.html&#34;&gt;os&lt;/a&gt;,
+&lt;a href=&#34;https://docs.python.org/3/library/collections.html&#34;&gt;collections&lt;/a&gt;,
+&lt;a href=&#34;https://docs.python.org/3/library/itertools.html&#34;&gt;itertools&lt;/a&gt;
+и &lt;a href=&#34;https://docs.python.org/3/library/functools.html&#34;&gt;functools&lt;/a&gt;.
+Они позволяют сделать код ещё короче и более читаемым, а тебя – профессиональнее.&lt;/p&gt;
+&lt;p&gt;Другие модули тоже важны: стоит несколько раз прочитать про все, чтобы иметь представление о функциях
+и знать, где смотреть, если они понадобятся.&lt;/p&gt;
+&lt;h3&gt;Понятные названия у всего&lt;/h3&gt;
+&lt;p&gt;Названия должны однозначно говорить о том, зачем нужна сущность: переменная, функция или что-то ещё.&lt;/p&gt;
+&lt;p&gt;Переменные – это сущности, а их названия – это существительные (&lt;code&gt;user.level&lt;/code&gt;) или их свойства (&lt;code&gt;user.is_admin&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Функции что-то делают с переменными, значит их названия – глаголы (&lt;code&gt;download_report&lt;/code&gt;, &lt;code&gt;levelup_user&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Названия должны быть:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;понятными&lt;/strong&gt;: понятно говорить о смысле. Не &lt;code&gt;result&lt;/code&gt;, а &lt;code&gt;users_online&lt;/code&gt; или &lt;code&gt;json_content&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;полными&lt;/strong&gt;: никаких &lt;code&gt;r&lt;/code&gt; для радиуса Земли или &lt;code&gt;i&lt;/code&gt; для элемента списка. В первом случае подойдёт &lt;code&gt;earth_radius&lt;/code&gt;,
+а во втором какой-нибудь &lt;code&gt;user&lt;/code&gt; или &lt;code&gt;book&lt;/code&gt;, в зависимости от того, что в списке. Длинные названия – не проблема,
+у всех давно есть автокомплит.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;на английском&lt;/strong&gt;: никаких &lt;code&gt;kniga&lt;/code&gt; или &lt;code&gt;polsovatel&lt;/code&gt;. Брр.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;грамотными&lt;/strong&gt;: не поленись открыть переводчик и гугл, чтобы подобрать правильный перевод. Неправильный перевод
+создаёт ощущение неряшливости, а может и смыслу навредить – тогда о читаемости не может быть и речи.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;уникальными&lt;/strong&gt;: в Питоне есть &lt;a href=&#34;https://docs.python.org/3.5/library/functions.html&#34;&gt;встроенные функции&lt;/a&gt;,
+называть переменные их именами нельзя: тогда функция станет недоступна. Среди них есть file, dict, all, str.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Больше функций&lt;/h3&gt;
+&lt;p&gt;Функции нужны, чтобы сделать код понятным и реиспользуемым.&lt;/p&gt;
+&lt;p&gt;Понятным – это когда с первого взгляда понятно, что он делает:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+credentials = load_oauth_credentials_from_file(&#39;fb_creds.json&#39;)
 fb_api = get_facebook_api(credentials)
 messages = fb_api.get_unread_messages()
-send_notifications_to_slack(messages=messages, user='ilebedev')
-</code></pre>
-<p>Сперва из файла загружаются ключи доступа к АПИ Фейсбука, потом создаётся объект для взаимодействия
-с АПИ и получаются непрочитанные сообщение. Эти сообщения отправляются в Слак пользователю ilebedev.</p>
-<p>Достаточно проглядеть код сверху вниз и сразу понятно, что он делает. Если нужны детали – можно перейти
-к исходникам каждой функции. Они могут быть сложными, но тут этого не видно: код написан на английском.</p>
-<p>Любой из этих кусков может пригодиться в других скриптах: например, доступ к АПИ можно хранить не только для
+send_notifications_to_slack(messages=messages, user=&#39;ilebedev&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Сперва из файла загружаются ключи доступа к АПИ Фейсбука, потом создаётся объект для взаимодействия
+с АПИ и получаются непрочитанные сообщение. Эти сообщения отправляются в Слак пользователю ilebedev.&lt;/p&gt;
+&lt;p&gt;Достаточно проглядеть код сверху вниз и сразу понятно, что он делает. Если нужны детали – можно перейти
+к исходникам каждой функции. Они могут быть сложными, но тут этого не видно: код написан на английском.&lt;/p&gt;
+&lt;p&gt;Любой из этих кусков может пригодиться в других скриптах: например, доступ к АПИ можно хранить не только для
 Фейсбука, но и для Адводс или Вконтакте. Отправлять сообщения в Слак – тоже полезная функция, даже в отрыве от
-примера выше.</p>
-<p>Такой код выглядит как конструктор: нашёл нужные функции, импортировал, вызвал, указал правильные аргументы – и готово.</p>
-<p>Чтобы это работало, каждая функция должна делать что-то одно: <code>load_oauth_credentials_from_file</code> просто
+примера выше.&lt;/p&gt;
+&lt;p&gt;Такой код выглядит как конструктор: нашёл нужные функции, импортировал, вызвал, указал правильные аргументы – и готово.&lt;/p&gt;
+&lt;p&gt;Чтобы это работало, каждая функция должна делать что-то одно: &lt;code&gt;load_oauth_credentials_from_file&lt;/code&gt; просто
 загружает oauth-ключи, она не знает про Фейсбук и про то, что с помощью этих ключей будут получены сообщения.
-Функции <code>get_facebook_api</code> всё равно, откуда к ней приехали <code>credentials</code> – из базы данных, файла или просто
-из скрипта. <code>send_notifications_to_slack</code> ничего не знает о том, что <code>messages</code> к ней приехали от Фейсбука, для
-неё это просто сообщения, которые надо отправить пользователю <code>user</code>.</p>
-<h3>Думай о пользователе</h3>
-<p>Код нужен для того, чтобы им пользовались. Его цель – сделать пользователю удобно.</p>
-<p>То, что задачи учебные и едва ли кто-то будет всерьёз ими пользоваться – не важно. Любой код должен быть удобен
-для пользователя.</p>
-<p>Это значит, что у каждой задачи:</p>
-<ul>
-<li><strong>должна быть документация</strong>. Что это, зачем, как запускать, какие файлы откуда надо скачать, что произойдёт
-и подобные вопросы в ней должны быть освящены. Это кажется ненужным (<em>"кам он, это же учебные задачки"</em>), но это не так.
-Доведение любой поделки до вменяемого состояния – такой же навык, как умение программировать и его необходимо развивать.</li>
-<li><strong>не должно быть захардкоженых путей до файлов</strong>. Их же нет у пользователя! Напиши, где их взять, сделай путь параметром,
-опиши в <code>--help</code>, как им пользоваться.</li>
-<li><strong>не должно быть лишних обязательных параметров</strong>. Параметризировать – хорошо, но заставлять пользователя указывать
+Функции &lt;code&gt;get_facebook_api&lt;/code&gt; всё равно, откуда к ней приехали &lt;code&gt;credentials&lt;/code&gt; – из базы данных, файла или просто
+из скрипта. &lt;code&gt;send_notifications_to_slack&lt;/code&gt; ничего не знает о том, что &lt;code&gt;messages&lt;/code&gt; к ней приехали от Фейсбука, для
+неё это просто сообщения, которые надо отправить пользователю &lt;code&gt;user&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Думай о пользователе&lt;/h3&gt;
+&lt;p&gt;Код нужен для того, чтобы им пользовались. Его цель – сделать пользователю удобно.&lt;/p&gt;
+&lt;p&gt;То, что задачи учебные и едва ли кто-то будет всерьёз ими пользоваться – не важно. Любой код должен быть удобен
+для пользователя.&lt;/p&gt;
+&lt;p&gt;Это значит, что у каждой задачи:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;должна быть документация&lt;/strong&gt;. Что это, зачем, как запускать, какие файлы откуда надо скачать, что произойдёт
+и подобные вопросы в ней должны быть освящены. Это кажется ненужным (&lt;em&gt;&#34;кам он, это же учебные задачки&#34;&lt;/em&gt;), но это не так.
+Доведение любой поделки до вменяемого состояния – такой же навык, как умение программировать и его необходимо развивать.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;не должно быть захардкоженых путей до файлов&lt;/strong&gt;. Их же нет у пользователя! Напиши, где их взять, сделай путь параметром,
+опиши в &lt;code&gt;--help&lt;/code&gt;, как им пользоваться.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;не должно быть лишних обязательных параметров&lt;/strong&gt;. Параметризировать – хорошо, но заставлять пользователя указывать
 все параметры – плохо. Лучше сделать необходимыми минимум параметров, а для остальных проставить значения по-умолчанию
-и написать об этом в документации.</li>
-<li><strong>объяснять, что происходит</strong>. Если скрипт выводит друзей онлайн, он должен говорить, что это друзья пользователя,
-которые сейчас онлайн. Выводит самый большой бар – должен писать, что это – самый большой бар.</li>
-</ul>
+и написать об этом в документации.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;объяснять, что происходит&lt;/strong&gt;. Если скрипт выводит друзей онлайн, он должен говорить, что это друзья пользователя,
+которые сейчас онлайн. Выводит самый большой бар – должен писать, что это – самый большой бар.&lt;/li&gt;
+&lt;/ul&gt;
+  </div>
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+  integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+  crossorigin="anonymous"></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+  integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+  crossorigin="anonymous"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script>
+  (function () {
+    'use strict'
+
+    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+      var msViewportStyle = document.createElement('style')
+      msViewportStyle.appendChild(
+        document.createTextNode(
+          '@-ms-viewport{width:auto!important}'
+        )
+      )
+      document.head.appendChild(msViewportStyle)
+    }
+
+  }())
+</script>
+
+</body>
+</html>

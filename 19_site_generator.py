@@ -27,12 +27,20 @@ def get_menu_structure(json_data):
     return right_menu_structure
 
 
-def render_articles_pages_to_file(json_data):
+def render_articles_pages_to_file(tpl_path, json_data):
+    path, filename = os.path.split(tpl_path)
     for article in json_data['articles']:
         with open('articles/' + article['source'], "r",
                   encoding='utf-8') as input_article:
             md_text = input_article.read()
-            html = markdown.markdown(md_text)
+            article_html = markdown.markdown(md_text)
+            context = {
+                'article': article_html
+            }
+            html = jinja2.Environment(autoescape=True, trim_blocks=True,
+                                      loader=jinja2.FileSystemLoader(
+                                          path)).get_template(filename).render(
+                context)
             with open('articles/' + article['source'] + '.html', 'w',
                       encoding='utf-8') as f:
                 f.write(html)
@@ -54,4 +62,4 @@ def render_index_page_to_file(tpl_path, json_data):
 if __name__ == '__main__':
     json_data = load_data('config.json')
     render_index_page_to_file('templates/index.html', json_data)
-    render_articles_pages_to_file(json_data)
+    render_articles_pages_to_file('templates/article.html', json_data)
