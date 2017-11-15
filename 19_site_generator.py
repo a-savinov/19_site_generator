@@ -20,10 +20,10 @@ def get_sub_menu_items(json_data, main_menu_item):
 def get_menu_structure(json_data):
     main_level_menu = json_data['topics']
     right_menu_structure = []
-    for item in main_level_menu:
-        sub_menu_items = get_sub_menu_items(json_data, item['slug'])
-        item.update({'articles': sub_menu_items})
-        right_menu_structure.append(item)
+    for menu_item in main_level_menu:
+        sub_menu_items = get_sub_menu_items(json_data, menu_item['slug'])
+        menu_item.update({'articles': sub_menu_items})
+        right_menu_structure.append(menu_item)
     return right_menu_structure
 
 
