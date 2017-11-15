@@ -37,10 +37,8 @@ def render_articles_pages_to_file(tpl_path, json_data):
             context = {
                 'article': article_html
             }
-            html = jinja2.Environment(autoescape=True, trim_blocks=True,
-                                      loader=jinja2.FileSystemLoader(
-                                          path)).get_template(filename).render(
-                context)
+            html = jinja2.Environment(loader=jinja2.FileSystemLoader(
+                path)).get_template(filename).render(context)
             with open('articles/' + article['source'] + '.html', 'w',
                       encoding='utf-8') as f:
                 f.write(html)
