@@ -33,7 +33,7 @@ def render_articles_pages_to_file(tpl_path, json_data):
         with open('articles/' + article['source'], "r",
                   encoding='utf-8') as input_article:
             md_text = input_article.read()
-            article_html = markdown.markdown(md_text)
+            article_html = markdown.markdown(md_text, extensions=['markdown.extensions.codehilite'])
             context = {
                 'article': article_html
             }
