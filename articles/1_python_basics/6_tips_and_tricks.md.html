@@ -1,151 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
 
-  <title>Starter Template for Bootstrap</title>
+    <title>Starter Template for Bootstrap</title>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-  <!-- Custom styles for this template -->
-  <style type="text/css">
-    body {
-      padding-top: 5rem;
-    }
-  </style>
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+        body {
+            padding-top: 5rem;
+        }
+
+        .codehilite {
+            border: solid black thin;
+            padding: 5px;
+            background-color: lightgray;
+        }
+
+    </style>
 </head>
-
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="/">Main page</a>
-</nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="../../">Main page</a>
+    </nav>
 
-<div class="container">
-  <div class="starter-template">
-    
-    <p>Тут – разные мелочи, на которых обычно спотыкаются новички в Питоне. Шагай свободно.</p>
+    <div class="container">
+        <div class="starter-template">
+             
+        <p>Тут – разные мелочи, на которых обычно спотыкаются новички в Питоне. Шагай свободно.</p>
 <h3>Итерируй сразу по коллекции, а не по индексам</h3>
 <p>Раньше в C++ итерация по коллекции проходила так:</p>
-<pre><code>:::cpp
-for(int i = 0; i &lt; books_amount; i++) {
+<pre class="codehilite"><code class="language-cpp">for(int i = 0; i &lt; books_amount; i++) {
     cout &lt;&lt; books[i];
-}
-</code></pre>
+}</code></pre>
+
+
 <p>Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:</p>
-<pre><code>:::python
-for i in len(books):
-    print(books[i])
-</code></pre>
+<pre class="codehilite"><code class="language-python">for i in len(books):
+    print(books[i])</code></pre>
+
+
 <p>Это неудобная дичь, древность и вообще. Вот как надо:</p>
-<pre><code>:::python
-for book in books:
-    print(book)
-</code></pre>
+<pre class="codehilite"><code class="language-python">for book in books:
+    print(book)</code></pre>
+
+
 <p>Часто вместе с элементом нужен его номер. Памятуя, что можно итерировать по коллекции, хочется сделать как-то так:</p>
-<pre><code>:::python
-i = 0 
+<pre class="codehilite"><code class="language-python">i = 0 
 for book in books:
     print(i, book)
-    i += 1
-</code></pre>
+    i += 1</code></pre>
+
+
 <p>Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция <code>enumerate</code>:</p>
-<pre><code>:::python
-for book_number, book in enumerate(books):
-    print(book_number, book)
-</code></pre>
+<pre class="codehilite"><code class="language-python">for book_number, book in enumerate(books):
+    print(book_number, book)</code></pre>
+
+
 <p>Делай правильно и не делай неправильно.</p>
 <h3>Используй None</h3>
 <p>Часто нужно предусмотреть какой-нибудь хреновый случай – нет файла с данными, не работает интернет,
 не хватает места на диске, пользователь ввёл неверные данные. </p>
 <p>В этом случае переменную с данными нужно чем-то заполнить, но со смыслом, типа, "тут ничего нет".</p>
 <p>Для "ничего" в Питоне есть <code>None</code>. Не пустая строка и не -1, а именно <code>None</code>:</p>
-<pre><code>:::python
-try:
+<pre class="codehilite"><code class="language-python">try:
     latitude = float(input('Введите широту: '))
 except ValueError:
     latitude = None
 
 if latitude is None:
-    print('wtf, dude?')
-</code></pre>
+    print('wtf, dude?')</code></pre>
+
+
 <p>Обрати внимание на то, как проверяется, находится ли в переменной <code>None</code>: <code>if latitude is None</code>.
 Не <code>if latitude == None</code> и не <code>if latitude</code>. Это важно.</p>
 <h3>Меньше вложенности</h3>
 <p>Загрузим json из файла:</p>
-<pre><code>:::python
-def load_json_data(filepath):
+<pre class="codehilite"><code class="language-python">def load_json_data(filepath):
     with open(filepath, 'r') as file_handler:
-        return json.load(file_handler)
-</code></pre>
+        return json.load(file_handler)</code></pre>
+
+
 <p>Всё сломается, если передать путь до несуществующего файла. Исправим:</p>
-<pre><code>:::python
-def load_json_data(filepath):
+<pre class="codehilite"><code class="language-python">def load_json_data(filepath):
     if os.path.exists(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
     else:
-        return None
-</code></pre>
+        return None</code></pre>
+
+
 <p>Первый секрет: если функция ничего не возвращает, то она возвращает <code>None</code>. Поэтому писать <code>return None</code> в конце
  функции смысла нет.
 Избавляемся от <code>else</code>:</p>
-<pre><code>:::python
-def load_json_data(filepath):
+<pre class="codehilite"><code class="language-python">def load_json_data(filepath):
     if os.path.exists(filepath):
         with open(filepath, 'r') as file_handler:
-            return json.load(file_handler)
-</code></pre>
+            return json.load(file_handler)</code></pre>
+
+
 <p>Теперь всё лаконично, но очень связанно, как предложение, в котором, помимо деепричастных оборотов, есть ещё
 несколько уровней подчинений, сложным образом связанных друг с другом и заставляющие держать их все в
 памяти, чтобы понять смысл, пусть и простой.</p>
 <p>Упростить можно так:</p>
-<pre><code>:::python
-def load_json_data(filepath):
+<pre class="codehilite"><code class="language-python">def load_json_data(filepath):
     if not os.path.exists(filepath):
         return None
     with open(filepath, 'r') as file_handler:
-        return json.load(file_handler)
-</code></pre>
+        return json.load(file_handler)</code></pre>
+
+
 <p>Теперь стало проще: меньше вложенности, просто читать. Меньше багов.</p>
 <h3>Используй превращение типов в bool</h3>
 <p>Часто в коде приходится проверять переменные на нулевые значения.
 Например, пустой список:</p>
-<pre><code>:::python
-if len(users) == 0:
-    pass
-</code></pre>
+<pre class="codehilite"><code class="language-python">if len(users) == 0:
+    pass</code></pre>
+
+
 <p>Или пустая строка:</p>
-<pre><code>:::python
-if user.email == '':
-    pass
-</code></pre>
+<pre class="codehilite"><code class="language-python">if user.email == '':
+    pass</code></pre>
+
+
 <p>Или ноль:</p>
-<pre><code>:::python
-if user.level == 0:
-    pass
-</code></pre>
+<pre class="codehilite"><code class="language-python">if user.level == 0:
+    pass</code></pre>
+
+
 <p>Все три примера выше – неверные. Вот их верные аналоги:</p>
-<pre><code>:::python
-if not users:
+<pre class="codehilite"><code class="language-python">if not users:
     pass
 
 if not user.email:
     pass
 
 if not user.level:
-    pass
-</code></pre>
+    pass</code></pre>
+
+
 <p>Дело в том, что любое условное выражение неявно конвертируется в boolean. Для каждого типа правила конвертации свои.
 Например, любая строка превратится в <code>True</code>, кроме пустой. Любое число – тоже <code>True</code>, кроме нуля.
 Подробнее в <a href="https://docs.python.org/3.5/library/stdtypes.html#truth">документации</a>.</p>
@@ -179,12 +182,12 @@ if not user.level:
 <h3>Больше функций</h3>
 <p>Функции нужны, чтобы сделать код понятным и реиспользуемым.</p>
 <p>Понятным – это когда с первого взгляда понятно, что он делает:</p>
-<pre><code>:::python
-credentials = load_oauth_credentials_from_file('fb_creds.json')
+<pre class="codehilite"><code class="language-python">credentials = load_oauth_credentials_from_file('fb_creds.json')
 fb_api = get_facebook_api(credentials)
 messages = fb_api.get_unread_messages()
-send_notifications_to_slack(messages=messages, user='ilebedev')
-</code></pre>
+send_notifications_to_slack(messages=messages, user='ilebedev')</code></pre>
+
+
 <p>Сперва из файла загружаются ключи доступа к АПИ Фейсбука, потом создаётся объект для взаимодействия
 с АПИ и получаются непрочитанные сообщение. Эти сообщения отправляются в Слак пользователю ilebedev.</p>
 <p>Достаточно проглядеть код сверху вниз и сразу понятно, что он делает. Если нужны детали – можно перейти
@@ -215,44 +218,38 @@ send_notifications_to_slack(messages=messages, user='ilebedev')
 <li><strong>объяснять, что происходит</strong>. Если скрипт выводит друзей онлайн, он должен говорить, что это друзья пользователя,
 которые сейчас онлайн. Выводит самый большой бар – должен писать, что это – самый большой бар.</li>
 </ul>
+    
+        </div>
+    </div>
+    <!-- /.container -->
 
-  </div>
-</div>
-<!-- /.container -->
 
-
-<!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-  integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-  crossorigin="anonymous"></script>
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-  integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-  crossorigin="anonymous"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script>
-  (function () {
-    'use strict'
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script>
+        (function() {
+            'use strict'
 
-    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-      var msViewportStyle = document.createElement('style')
-      msViewportStyle.appendChild(
-        document.createTextNode(
-          '@-ms-viewport{width:auto!important}'
-        )
-      )
-      document.head.appendChild(msViewportStyle)
-    }
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement('style')
+                msViewportStyle.appendChild(
+                    document.createTextNode(
+                        '@-ms-viewport{width:auto!important}'
+                    )
+                )
+                document.head.appendChild(msViewportStyle)
+            }
 
-  }())
-</script>
+        }())
+
+    </script>
 
 </body>
+
 </html>

@@ -5,7 +5,7 @@ import jinja2
 import markdown
 
 
-def load_data(filepath):
+def load_config(filepath):
     with open(filepath, "r", encoding='utf-8') as input_file:
         raw_json_data = json.load(input_file)
     return raw_json_data
@@ -31,17 +31,18 @@ def render_articles_pages_to_file(tpl_path, json_data):
     path, filename = os.path.split(tpl_path)
     for article in json_data['articles']:
         with open('articles/' + article['source'], "r",
-                  encoding='utf-8') as input_article:
-            md_text = input_article.read()
-            article_html = markdown.markdown(md_text, extensions=['markdown.extensions.codehilite'])
+                  encoding='utf-8') as input_file:
+            md_text = input_file.read()
+            html_text = markdown.markdown(md_text, extensions=[
+                'markdown.extensions.codehilite'])
             context = {
-                'article': article_html
+                'article': html_text
             }
             html = jinja2.Environment(loader=jinja2.FileSystemLoader(
                 path)).get_template(filename).render(context)
             with open('articles/' + article['source'] + '.html', 'w',
-                      encoding='utf-8') as f:
-                f.write(html)
+                      encoding='utf-8') as output_file:
+                output_file.write(html)
 
 
 def render_index_page_to_file(tpl_path, json_data):
@@ -53,11 +54,18 @@ def render_index_page_to_file(tpl_path, json_data):
     html = jinja2.Environment(autoescape=True, trim_blocks=True,
                               loader=jinja2.FileSystemLoader(
                                   path)).get_template(filename).render(context)
-    with open('index.html', 'w', encoding='utf-8') as f:
-        f.write(html)
+    with open('index.html', 'w', encoding='utf-8') as output_file:
+        output_file.write(html)
+
+
+def generate_static_site(config_file):
+    json_data = load_config(config_file)
+    render_index_page_to_file('templates/index.html', json_data)
+    render_articles_pages_to_file('templates/article.html', json_data)
 
 
 if __name__ == '__main__':
-    json_data = load_data('config.json')
-    render_index_page_to_file('templates/index.html', json_data)
-    render_articles_pages_to_file('templates/article.html', json_data)
+    print('Generate site from MD articles...')
+    generate_static_site('config.json')
+    print('done.')
+

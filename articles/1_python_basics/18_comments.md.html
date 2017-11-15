@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
 
-  <title>Starter Template for Bootstrap</title>
+    <title>Starter Template for Bootstrap</title>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-  <!-- Custom styles for this template -->
-  <style type="text/css">
-    body {
-      padding-top: 5rem;
-    }
-  </style>
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+        body {
+            padding-top: 5rem;
+        }
+
+        .codehilite {
+            border: solid black thin;
+            padding: 5px;
+            background-color: lightgray;
+        }
+
+    </style>
 </head>
-
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="/">Main page</a>
-</nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="../../">Main page</a>
+    </nav>
 
-<div class="container">
-  <div class="starter-template">
-    
-    <h2>Какие бывают</h2>
+    <div class="container">
+        <div class="starter-template">
+             
+        <h2>Какие бывают</h2>
 <h3>Обычные комментарии</h3>
 <p>Комментарии – способ прокомментировать код на ходу, на той же строке. </p>
-<pre><code>:::python
-price = Column(BigInteger)  # рубли * 100
-</code></pre>
+<pre class="codehilite"><code class="language-python">price = Column(BigInteger)  # рубли * 100</code></pre>
+
+
 <h3>Докстринги</h3>
 <p>Докстринг – строковая переменная, которая идёт сразу за объявлением функции, класса, метода или модуля.
 Она нужна для документирования всей функции: описания входящих параметров, результата, логики, крайних случаев.
 Заключается в тройные двойные кавычки. Вот так:</p>
-<pre><code>:::python
-def tensorsolve(a, b, axes=None):
-    """
+<pre class="codehilite"><code class="language-python">def tensorsolve(a, b, axes=None):
+    &quot;&quot;&quot;
     Solve the tensor equation ``a x = b`` for x.
     It is assumed that all indices of `x` are summed over in the product,
     together with the rightmost indices of `a`, as is done in, for example,
     ``tensordot(a, x, axes=len(b.shape))``.
-    """
-</code></pre>
+    &quot;&quot;&quot;</code></pre>
+
+
 <p>В серьёзных проектах из них часто генерируется документация, поэтому они могут быть большими, по несколько экранов.
 Это касается проектов, у которых есть документация для разработчиков: Django, numpy, sqlalchemy.</p>
 <p>Если проект не подразумевает, что им будут пользоваться другие разработчики, такого быть не должно.
@@ -64,35 +67,35 @@ def tensorsolve(a, b, axes=None):
 <p>Самая частая ошибка, связанная с комментариями: дублирование информации.
 В таком случае комментарий не несёт дополнительной информации, а просто переводит соседний код
 с Питона на русский/английский. Пример:</p>
-<pre><code>:::python
-# загружаем данные из файла data.json
+<pre class="codehilite"><code class="language-python"># загружаем данные из файла data.json
 with open('users.json', 'r') as handler:
-    data = json.load(handler)
-</code></pre>
+    data = json.load(handler)</code></pre>
+
+
 <p>Вот как можно исправить:</p>
-<pre><code>:::python
-with open('users.json', 'r') as handler:
-    data = json.load(handler)
-</code></pre>
+<pre class="codehilite"><code class="language-python">with open('users.json', 'r') as handler:
+    data = json.load(handler)</code></pre>
+
+
 <p>А так – ещё лучше:</p>
-<pre><code>:::python
-data = load_all_users_from_file()
-</code></pre>
+<pre class="codehilite"><code class="language-python">data = load_all_users_from_file()</code></pre>
+
+
 <h3>Не сопровождать комментарии</h3>
 <p>Другая частая ошибка: не менять комментарии при изменении кода. В примере выше мы загружали данные из файла. 
 Через месяц взялись за голову и поселили данные в базе данных. Код стал таким:</p>
-<pre><code>:::python
-# загружаем данные из файла data.json
-data = db_session.query(User).all()
-</code></pre>
+<pre class="codehilite"><code class="language-python"># загружаем данные из файла data.json
+data = db_session.query(User).all()</code></pre>
+
+
 <p>Данные из файла? WAT?</p>
 <h3>Думать, что все поймут</h3>
 <p>Когда программист пишет кусок кода, он глубоко в него погружён: держит в голове все детали, связи и особые случаи.
 В таком состоянии всё поведение кажется понятным, поэтому разработчик может оставить комментарий самому себе.
 Проблема в том, что когда он переключится на другую задачу и забудет про детали, комментарий может взорвать мозг:</p>
-<pre><code>:::python
-inv(strain_tensor) - rigidity.T  # правый случай
-</code></pre>
+<pre class="codehilite"><code class="language-python">inv(strain_tensor) - rigidity.T  # правый случай</code></pre>
+
+
 <p>Правый, правда? Ну, теперь всё понятно.</p>
 <h3>Шутить</h3>
 <p>Шутки к неидеальному коду смотрятся неуместно. Представь, как чувствует себя разработчик, копающийся в чужом
@@ -115,44 +118,38 @@ inv(strain_tensor) - rigidity.T  # правый случай
 <li><a href="https://docs.python.org/3.5/library/doctest.html">doctest</a>. Документация к модулю про доктесты.</li>
 <li><a href="http://stackoverflow.com/questions/184618/">What is the best comment in source code you have ever encountered?</a>. Шутить в коде не стоит, а вот посмеяться с чужих шуток можно. Это ж не нам поддерживать.</li>
 </ul>
+    
+        </div>
+    </div>
+    <!-- /.container -->
 
-  </div>
-</div>
-<!-- /.container -->
 
-
-<!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-  integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-  crossorigin="anonymous"></script>
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-  integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-  crossorigin="anonymous"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script>
-  (function () {
-    'use strict'
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script>
+        (function() {
+            'use strict'
 
-    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-      var msViewportStyle = document.createElement('style')
-      msViewportStyle.appendChild(
-        document.createTextNode(
-          '@-ms-viewport{width:auto!important}'
-        )
-      )
-      document.head.appendChild(msViewportStyle)
-    }
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement('style')
+                msViewportStyle.appendChild(
+                    document.createTextNode(
+                        '@-ms-viewport{width:auto!important}'
+                    )
+                )
+                document.head.appendChild(msViewportStyle)
+            }
 
-  }())
-</script>
+        }())
+
+    </script>
 
 </body>
+
 </html>

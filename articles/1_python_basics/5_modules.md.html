@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
 
-  <title>Starter Template for Bootstrap</title>
+    <title>Starter Template for Bootstrap</title>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-  <!-- Custom styles for this template -->
-  <style type="text/css">
-    body {
-      padding-top: 5rem;
-    }
-  </style>
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+        body {
+            padding-top: 5rem;
+        }
+
+        .codehilite {
+            border: solid black thin;
+            padding: 5px;
+            background-color: lightgray;
+        }
+
+    </style>
 </head>
-
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="/">Main page</a>
-</nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="../../">Main page</a>
+    </nav>
 
-<div class="container">
-  <div class="starter-template">
-    
-    <h3>Что это такое</h3>
+    <div class="container">
+        <div class="starter-template">
+             
+        <h3>Что это такое</h3>
 <p>Модуль – кусок кода, который можно использовать в другом коде. В самом простом случае это файл.
 В любом проекте функциональность разбивается на куски, каждый кусок селится в свой модуль.</p>
 <p>Всё, что устанавливается с помощью pip, представляет собой модули. Модули иерархические:
@@ -44,8 +47,7 @@
 <p>Имя модуля совпадает с именем файла и должно быть нормальным именем переменной в Питоне: например, не содержать
 знаков минуса.</p>
 <p>Предположим, что есть папка <code>3_bars</code>, в ней файл <code>data_loaders.py</code> с таким содержанием:</p>
-<pre><code>:::python
-import csv
+<pre class="codehilite"><code class="language-python">import csv
 import json
 
 
@@ -56,29 +58,29 @@ def load_from_json(filepath):
 
 def load_from_csv(filepath):
     with open(filepath, 'r') as file_handler:
-        return list(csv.reader(file_handler))
-</code></pre>
+        return list(csv.reader(file_handler))</code></pre>
+
+
 <p>А рядом есть файл <code>bars.py</code>, в котором мы хотим загрузить данные из csv. Вот что в нём можно написать:</p>
-<pre><code>:::python
-from data_loaders import load_from_csv  # импортируем функцию из модуля
+<pre class="codehilite"><code class="language-python">from data_loaders import load_from_csv  # импортируем функцию из модуля
 
 
-print(load_from_csv('bars.csv')
-</code></pre>
+print(load_from_csv('bars.csv')</code></pre>
+
+
 <p>А можно так:</p>
-<pre><code>:::python
-import data_loaders  # импортируем модуль целиком
+<pre class="codehilite"><code class="language-python">import data_loaders  # импортируем модуль целиком
 
 
-print(data_loaders.load_from_csv('bars.csv')  # используем функцию с указанием модуля
-</code></pre>
+print(data_loaders.load_from_csv('bars.csv')  # используем функцию с указанием модуля</code></pre>
+
+
 <p>Есть ещё вариант <code>from data_loaders import *</code>, но он вне закона. Забудьте о нём.</p>
 <h3>Запуск модуля как скрипта</h3>
 <p>Когда Питон видит <code>import data_loaders</code>, он находит файл <code>data_loaders.py</code> и выполняет его. Реально выполняет:
 если в нём есть код, он будет выполнен. Даже если это не просто объявления функций, а их вызов. Представим,
 что когда мы писали код в <code>data_loaders.py</code>, мы его дебажили. Например, так:</p>
-<pre><code>:::python
-import json
+<pre class="codehilite"><code class="language-python">import json
 
 
 def load_from_json(filepath):
@@ -86,14 +88,14 @@ def load_from_json(filepath):
         return json.load(file_handler)
 
 
-print(load_from_json('test.json'))
-</code></pre>
+print(load_from_json('test.json'))</code></pre>
+
+
 <p>Теперь если мы импортируем этот модуль (<code>import data_loaders</code>), девятая строка выполнится, файл загрузится и выведется
 на экран. А ведь в <code>bars.py</code> это не нужно! Можно этот код удалить, но тогда будет неудобно дорабатывать функцию
 <code>load_from_json</code>: при изменении надо будет добавлять отладочный принт, а потом удалять.</p>
 <p>Вот правильный способ это обойти:</p>
-<pre><code>:::python
-import json
+<pre class="codehilite"><code class="language-python">import json
 
 
 def load_from_json(filepath):
@@ -102,8 +104,9 @@ def load_from_json(filepath):
 
 
 if __name__ == '__main__':
-    print(load_from_json('test.json'))
-</code></pre>
+    print(load_from_json('test.json'))</code></pre>
+
+
 <p>Иф на девятой строке значит "выполняй меня только если файл запущен напрямую, а не импортирован".
 Теперь при запуске <code>python data_loaders.py</code> будет выполняться дебажная загрузка кода, а
 при импорте этого модуля – не будет. То, что надо.</p>
@@ -114,25 +117,25 @@ if __name__ == '__main__':
 <h3>Подводные камни</h3>
 <p>Главный подводный камень – рекурсивный импорт. Это если мы импортируем <code>data_loaders</code> из <code>bars</code>, а для <code>data_loaders</code>
 нужен <code>bars</code>. Вот так:</p>
-<pre><code>:::python
-# bars.py
+<pre class="codehilite"><code class="language-python"># bars.py
 import data_loaders
 
 # data_loaders.py
-import bars
-</code></pre>
+import bars</code></pre>
+
+
 <p>Бах! Всё сломается при запуске.</p>
 <p>Иногда бывает ещё веселее: когда импорты замыкаются в трёх и более файлах. Типа того:</p>
-<pre><code>:::python
-# bars.py
+<pre class="codehilite"><code class="language-python"># bars.py
 import data_loaders
 
 # data_loaders.py
 import helpers
 
 # helpers.py
-import bars
-</code></pre>
+import bars</code></pre>
+
+
 <p>Всё сломается так же, как в примере выше, но ещё и заставит поломать голову при починке.</p>
 <p>Чинить такие случаи просто: разбивать код на максимально независимые модули. В примере выше, например,
 файлу <code>helpers.py</code> зачем-то нужен <code>bars.py</code>. Так быть не должно: в <code>helpers.py</code> должны жить
@@ -145,8 +148,7 @@ import bars
 Например, упаковать код в модуль и установить его с помощью pip. Так что тсс, я вам ничего не говорил.</p>
 <p>В памяти все загруженные модули хранятся в <code>sys.modules</code>. Иногда встречаются случаи, когда файла нет, а модуль есть.
 Это не сложно устроить:</p>
-<pre><code>:::python
-# mod.py
+<pre class="codehilite"><code class="language-python"># mod.py
 import sys
 from types import ModuleType
 
@@ -162,47 +164,42 @@ import mod  # тут выполнился код из mod.py
 import some_weird_module  # модуль есть, а файла – нет
 
 
-print(some_weird_module.x)  # 5
-</code></pre>
+print(some_weird_module.x)  # 5</code></pre>
+
+
 <p>Делать так незаконно: это неочевидно, затрудняет отладку и вредит читаемости. Не надо так.</p>
+    
+        </div>
+    </div>
+    <!-- /.container -->
 
-  </div>
-</div>
-<!-- /.container -->
 
-
-<!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-  integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-  crossorigin="anonymous"></script>
-<script
-  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-  integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-  crossorigin="anonymous"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script>
-  (function () {
-    'use strict'
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script>
+        (function() {
+            'use strict'
 
-    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-      var msViewportStyle = document.createElement('style')
-      msViewportStyle.appendChild(
-        document.createTextNode(
-          '@-ms-viewport{width:auto!important}'
-        )
-      )
-      document.head.appendChild(msViewportStyle)
-    }
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement('style')
+                msViewportStyle.appendChild(
+                    document.createTextNode(
+                        '@-ms-viewport{width:auto!important}'
+                    )
+                )
+                document.head.appendChild(msViewportStyle)
+            }
 
-  }())
-</script>
+        }())
+
+    </script>
 
 </body>
+
 </html>
