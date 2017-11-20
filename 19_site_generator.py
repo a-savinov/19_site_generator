@@ -3,6 +3,7 @@ import os
 
 import jinja2
 import markdown
+from livereload import Server
 
 
 def load_config(filepath):
@@ -61,14 +62,20 @@ def render_index_page_to_file(tpl_path, json_data):
         output_file.write(html)
 
 
-def generate_static_site(config_file):
-    json_data = load_config(config_file)
+def generate_static_site():
+    json_data = load_config('config.json')
     render_index_page_to_file('templates/index.html', json_data)
     render_articles_pages_to_file('templates/article.html', json_data)
 
 
 if __name__ == '__main__':
     print('Generate site from MD articles...')
-    generate_static_site('config.json')
+    generate_static_site
     print('done.')
+    print('Start  watchdog...')
+    server = Server()
+    server.watch('templates/*.html', generate_static_site)
+    server.watch('articles/*/*.md', generate_static_site)
+    server.serve(root='/')
+
 
