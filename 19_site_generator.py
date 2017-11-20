@@ -30,7 +30,8 @@ def get_menu_structure(json_data):
 def render_articles_pages_to_file(tpl_path, json_data):
     path, filename = os.path.split(tpl_path)
     for article in json_data['articles']:
-        with open('articles/' + article['source'], "r",
+        article_path, article_file = os.path.split(article['source'])
+        with open(os.path.join('articles', article_path, article_file), "r",
                   encoding='utf-8') as input_file:
             md_text = input_file.read()
             html_text = markdown.markdown(md_text, extensions=[
@@ -40,8 +41,10 @@ def render_articles_pages_to_file(tpl_path, json_data):
             }
             html = jinja2.Environment(loader=jinja2.FileSystemLoader(
                 path)).get_template(filename).render(context)
-            with open('articles/' + article['source'] + '.html', 'w',
-                      encoding='utf-8') as output_file:
+            html_article_path = os.path.join('articles',
+                                             article_path,
+                                             article_file) + '.html'
+            with open(html_article_path, 'w', encoding='utf-8') as output_file:
                 output_file.write(html)
 
 
