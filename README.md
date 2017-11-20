@@ -1,6 +1,6 @@
 # Encyclopedia
 
-This script generate static html site from md5 files [Site example]()
+This script generate static html site from md5 files [Site example](https://a-savinov.github.io/19_site_generator/index.html)
 
 ### How to Install
 
