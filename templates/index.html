@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for item in main_menu -%}
-        <h1>{{item.title}}</h1>
-            {% for article in item.articles -%}
-                <p><a href="articles/{{article.source|replace('.md', '.md.html')|e}}">{{article.title}}</a></p>
-            {% endfor -%}
-    {% endfor -%}
+  {% for item in main_menu -%}
+    <h1>{{item.title}}</h1>
+      {% for article in item.articles -%}
+        <p>
+          <a href="articles/{{article.source|replace('.md', '.md.html')|e}}">{{article.title}}</a>
+        </p>
+      {% endfor -%}
+  {% endfor -%}
 {% endblock %}
